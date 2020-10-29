@@ -1,0 +1,22 @@
+<html>
+<title>RandNum</title>
+Simple Stats Random Number Generator<br><br><br>
+Lower: <input type="text" id="lower" size="20" name="lower"><br><br>
+Upper: <input type="text" id="upper" size="20" name="upper"><br><br>
+Amount: <input type="text" id="number" size="20" name="number"><br>Requesting more than 100,000 numbers will cause lag<br><br>
+<button onclick="randomGen()">Generate</button><br><br><br>
+Result: <div id="result"></div>
+<script>
+function randomGen(){
+	var lower = document.getElementById("lower").value;
+	var upper = document.getElementById("upper").value;
+	var n = document.getElementById("number").value;
+	var x = "";
+	for(i=0;i<n;i++){
+		if(i!=0){x+=", ";}
+		x += Math.floor(Math.random()*(upper-lower+1))+lower*1;
+	}
+	document.getElementById("result").innerHTML = x;
+}
+</script>
+</html>
