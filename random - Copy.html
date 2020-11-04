@@ -1,0 +1,54 @@
+<html>
+<title>RandNum</title>
+Simple Stats Random Number Generator<br>
+Coming features: Assign words to numbers, Exclude certain numbers, Generate decimals, Delete repeats<br><br><br>
+Lower: <input type="text" id="lower" size="20" name="lower"><br><br>
+Upper: <input type="text" id="upper" size="20" name="upper"><br><br>
+Amount: <input type="text" id="number" size="20" name="number"><br>Requesting more than 100,000 numbers will cause lag<br><br>
+More Options: <input type="checkbox" id="moreCheck" onclick="moreChecker()"><br><br>
+<div style="display:none" id="more">
+test
+
+<br><br>
+</div>
+<button onclick="randomGen()">Generate</button><br><br><br>
+Result: <div id="result"></div>
+<script>
+function genNum(lower,upper,n){
+	return Math.floor(Math.random()*(upper-lower+1))+lower*1;
+}
+function randomGen(){
+	var lower = document.getElementById("lower").value;
+	var upper = document.getElementById("upper").value;
+	var n = document.getElementById("number").value;
+	var result = [];
+	var repeats = true;
+
+	for(i=0;i<n;i++){
+		var pushValue = genNum(lower,upper,n);
+		if(repeats == true){
+			do{
+				var repeatcheck = false;
+				for(j=0;j<i;j++){
+					if(pushValue == result[j]){
+						repeatcheck = true;
+					}
+				}
+				pushValue = genNum(lower,upper,n);
+			}while(repeatcheck == true);
+		}
+		result.push(pushValue);
+	}
+	document.getElementById("result").innerHTML = result;
+}
+function moreChecker(){
+	var checkBox = document.getElementById("moreCheck");
+	var text = document.getElementById("text");
+	if (checkBox.checked == true){
+		more.style.display = "block";
+	}else{
+		more.style.display = "none";
+	}
+}
+</script>
+</html>
